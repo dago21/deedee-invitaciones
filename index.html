@@ -24,7 +24,7 @@
 <div class="envelope-area"><button class="envelope" id="envelope" type="button" aria-label="Abrir invitación" aria-expanded="false" aria-controls="details"><span class="env-back"></span><span class="letter"><span>🎂</span><strong>¡Sorpresa!</strong></span><span class="env-front"></span><span class="env-flap"></span></button></div>
 <p class="tap-hint" id="hint">👆 Tocá el sobre para abrir tu invitación</p>
 </section>
-<section class="details" id="details" aria-live="polite"><div class="card"><div class="cake" aria-hidden="true">🎂</div><div class="eyebrow">¡Vamos a festejar!</div><h2>El cumpleaños de <span class="name" id="guestName">Sofía</span></h2><p class="subtitle" id="message">¡Te espero para compartir una tarde llena de alegría, juegos y sorpresas!</p><div class="divider"></div>
+<section class="details" id="details" aria-live="polite"><div class="card"><div class="cake" aria-hidden="true">🎂</div><div class="eyebrow">¡Vamos a festejar!</div><h2>El cumpleaños de <span class="name" id="guestName">Diana</span></h2><p class="subtitle" id="message">¡Te espero para compartir una tarde llena de alegría, juegos y sorpresas!</p><div class="divider"></div>
 <div class="info"><div class="info-item"><span class="label">📅 Fecha</span><span class="value" id="dateLabel">Sábado 19 de diciembre de 2026</span></div><div class="info-item"><span class="label">🕓 Hora</span><span class="value" id="timeLabel">16:00 h</span></div><div class="info-item"><span class="label">📍 Lugar</span><span class="value" id="placeLabel">Salón de eventos Arcoíris</span></div></div>
 <div class="eyebrow">Faltan...</div><div class="countdown" aria-label="Cuenta regresiva"><div class="timebox"><strong id="days">00</strong><span>días</span></div><div class="timebox"><strong id="hours">00</strong><span>horas</span></div><div class="timebox"><strong id="minutes">00</strong><span>minutos</span></div><div class="timebox"><strong id="seconds">00</strong><span>segundos</span></div></div><p class="footnote" id="countdownStatus"></p>
 <div class="actions"><a class="btn btn-primary" id="rsvp" href="#" target="_blank" rel="noopener noreferrer">💬 Confirmar por WhatsApp</a><a class="btn btn-secondary" id="map" href="#" target="_blank" rel="noopener noreferrer">📍 Cómo llegar</a><a class="btn btn-secondary" id="calendar" href="#" target="_blank" rel="noopener noreferrer">📅 Agregar a Google Calendar</a></div><p class="footnote">¡Tu presencia es el mejor regalo! 💖</p></div></section>
@@ -36,14 +36,14 @@
    whatsapp: número con código de país, SIN +, espacios ni guiones.
    direccionMaps: dirección buscable en Google Maps. */
 const EVENTO = {
-  nombre: 'Sofía',
+  nombre: 'Diana',
   mensaje: '¡Te espero para compartir una tarde llena de alegría, juegos y sorpresas!',
   fechaInicio: '2026-12-19T16:00:00-03:00',
   fechaFin: '2026-12-19T19:00:00-03:00',
   lugar: 'Salón de eventos Arcoíris',
-  direccionMaps: 'Asunción, Paraguay',
-  whatsapp: '595981000000', // REEMPLAZAR por el número real antes de publicar
-  textoConfirmacion: '¡Hola! Confirmo mi asistencia al cumpleaños de Sofía 🎉'
+  direccionMaps: 'https://maps.app.goo.gl/NwdBYix3ZzQCU5Jv8?g_st=ic',
+  whatsapp: '595986276434',
+  textoConfirmacion: '¡Hola! Confirmo mi asistencia al cumpleaños de Diana 🎉'
 };
 const $ = id => document.getElementById(id);
 const start = new Date(EVENTO.fechaInicio), end = new Date(EVENTO.fechaFin);
@@ -55,7 +55,7 @@ $('dateLabel').textContent=dateFormat.format(start).replace(/^./,c=>c.toUpperCas
 $('timeLabel').textContent=hourFormat.format(start)+' h';
 $('placeLabel').textContent=EVENTO.lugar;
 $('rsvp').href='https://wa.me/'+EVENTO.whatsapp.replace(/\D/g,'')+'?text='+encodeURIComponent(EVENTO.textoConfirmacion);
-$('map').href='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(EVENTO.direccionMaps);
+$('map').href=EVENTO.direccionMaps;
 const calDate=d=>d.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');
 $('calendar').href='https://calendar.google.com/calendar/render?'+new URLSearchParams({action:'TEMPLATE',text:'Cumpleaños de '+EVENTO.nombre,dates:calDate(start)+'/'+calDate(end),details:EVENTO.mensaje,location:EVENTO.lugar+', '+EVENTO.direccionMaps}).toString();
 function countdown(){let s=Math.max(0,Math.floor((start-Date.now())/1000));const d=Math.floor(s/86400);s%=86400;const h=Math.floor(s/3600);s%=3600;const m=Math.floor(s/60),sec=s%60;[['days',d],['hours',h],['minutes',m],['seconds',sec]].forEach(([id,n])=>$(id).textContent=String(n).padStart(2,'0'));$('countdownStatus').textContent=Date.now()>=start.getTime()?'¡Llegó el gran día! 🎉':''}countdown();setInterval(countdown,1000);
