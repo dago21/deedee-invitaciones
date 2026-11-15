@@ -18,7 +18,7 @@
 :root{color-scheme:dark;--bg:#201b45;--violet:#7453d5;--pink:#ff78bb;--gold:#ffdc84;--white:#fffafc;--muted:#d9d0ee}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100svh;font-family:ui-rounded,"Trebuchet MS",system-ui,-apple-system,sans-serif;color:var(--white);background:radial-gradient(ellipse at 15% 10%,#513777 0,transparent 40%),radial-gradient(ellipse at 90% 70%,#4b2c74 0,transparent 45%),var(--bg);overflow-x:hidden}button,a{-webkit-tap-highlight-color:transparent}button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:4px}.stars,.balloons,.confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden}.stars{z-index:0}.star{position:absolute;width:4px;height:4px;border-radius:50%;background:#fff;opacity:.6;animation:twinkle 2.8s ease-in-out infinite alternate}.balloons{z-index:0}.balloon{position:absolute;bottom:-140px;width:64px;height:78px;border-radius:50% 50% 48% 48%;background:var(--pink);opacity:.3;animation:rise 19s linear infinite;box-shadow:inset -12px -9px 0 #0002}.balloon:after{content:"";position:absolute;top:76px;left:31px;width:1px;height:75px;background:#fff8}.balloon:nth-child(2){left:78%;background:#ffcf76;animation-delay:-6s;animation-duration:23s}.balloon:nth-child(3){left:38%;background:#9f8dff;animation-delay:-12s;animation-duration:21s}.balloon:nth-child(4){left:92%;background:#75e0d6;animation-delay:-15s;animation-duration:24s}.balloon:nth-child(1){left:5%}@keyframes rise{to{transform:translateY(-125vh) rotate(13deg)}}@keyframes twinkle{to{opacity:.12;transform:scale(.6)}}main{position:relative;z-index:1;width:min(100% - 32px,540px);margin:auto;padding:42px 0 72px}.intro{text-align:center}.eyebrow{font-size:.78rem;font-weight:800;letter-spacing:.27em;text-transform:uppercase;color:var(--gold)}h1{font-size:clamp(2.4rem,9vw,4.2rem);line-height:1.04;margin:16px 0 12px;text-shadow:0 6px 25px #0005}.gradient{background:linear-gradient(95deg,#ffb6dc,#ffe3a2,#c7adff);background-clip:text;-webkit-background-clip:text;color:transparent}.subtitle{color:var(--muted);line-height:1.65;font-size:1rem}.envelope-area{margin:38px auto 16px;display:grid;place-items:center;min-height:235px}.envelope{width:min(290px,80vw);height:185px;position:relative;cursor:pointer;border:0;background:none;padding:0;filter:drop-shadow(0 20px 24px #08051d75);transition:transform .4s}.envelope:hover{transform:translateY(-5px)}.env-back{position:absolute;inset:0;border-radius:12px;background:#eab0d6}.letter{position:absolute;left:9%;bottom:12px;width:82%;height:150px;border-radius:10px;background:#fffaf4;color:#6b4077;display:grid;place-content:center;gap:7px;box-shadow:0 3px 10px #0002;transition:transform .85s cubic-bezier(.2,.8,.2,1);z-index:2}.letter span{font-size:2.3rem}.letter strong{font-size:1rem}.env-front{position:absolute;inset:0;z-index:3;clip-path:polygon(0 0,50% 55%,100% 0,100% 100%,0 100%);background:linear-gradient(150deg,#f5c4e1,#d88fc5);border-radius:12px}.env-flap{position:absolute;inset:0;z-index:4;clip-path:polygon(0 0,100% 0,50% 60%);background:#ffd6ed;transform-origin:50% 0;transition:transform .65s,z-index 0s .3s}.envelope.open .env-flap{transform:rotateX(180deg);z-index:1}.envelope.open .letter{transform:translateY(-90px)}.tap-hint{color:var(--muted);font-size:.9rem;text-align:center;animation:pulse 1.7s ease-in-out infinite}@keyframes pulse{50%{opacity:.55}}.details{display:none;animation:reveal .8s ease both}.details.visible{display:block}@keyframes reveal{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}.card{background:linear-gradient(155deg,#ffffff19,#ffffff0b);border:1px solid #ffffff35;box-shadow:0 20px 70px #100c3266;border-radius:28px;padding:28px 22px;margin-top:26px;backdrop-filter:blur(12px);text-align:center}.cake{font-size:4rem;filter:drop-shadow(0 8px 15px #0003);animation:float 3s ease-in-out infinite}@keyframes float{50%{transform:translateY(-10px) rotate(-4deg)}}h2{font-size:clamp(1.7rem,7vw,2.4rem);margin:12px 0}.name{color:var(--gold)}.divider{width:70px;height:3px;background:linear-gradient(90deg,var(--pink),var(--gold));border-radius:3px;margin:20px auto}.info{display:grid;gap:18px;margin:25px 0}.info-item{display:grid;gap:5px}.info-item .label{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:#c5b5e6;font-weight:800}.info-item .value{font-size:1.16rem;font-weight:800}.countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:20px 0 26px}.timebox{background:#ffffff15;border:1px solid #ffffff26;border-radius:16px;padding:12px 3px}.timebox strong{display:block;font-size:clamp(1.25rem,5vw,1.85rem);font-variant-numeric:tabular-nums}.timebox span{font-size:.68rem;color:var(--muted)}.actions{display:grid;gap:12px}.btn{display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;font-size:1rem;font-weight:800;min-height:54px;border-radius:16px;padding:13px 16px;transition:transform .2s,filter .2s}.btn:hover{transform:translateY(-2px);filter:brightness(1.06)}.btn-primary{background:linear-gradient(120deg,#ff91c7,#ffc07c);color:#362044}.btn-secondary{background:#ffffff19;color:white;border:1px solid #ffffff50}.footnote{font-size:.86rem;color:var(--muted);line-height:1.6}.confetti{z-index:10}.piece{position:absolute;top:-20px;width:9px;height:14px;animation:fall var(--duration) linear forwards;background:var(--color);left:var(--left);transform:rotate(var(--rotate))}@keyframes fall{to{transform:translate(var(--drift),110vh) rotate(900deg);opacity:.3}}footer{text-align:center;margin-top:30px;color:#c6b7df;font-size:.78rem}@media(min-width:700px){main{padding-top:70px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.balloons{display:none}}
 
 /* Control flotante de música */
-.music-toggle{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:100;background:linear-gradient(135deg,#ff83bc,#ffda89);color:#2c214c;border:2px solid #fff7;border-radius:999px;box-shadow:0 8px 28px #160c3870;min-width:58px;min-height:58px;font-size:25px;cursor:pointer;display:none;align-items:center;justify-content:center}.music-toggle.show{display:flex}.music-toggle:focus-visible{outline:3px solid white;outline-offset:3px}
+.music-toggle{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:100;background:linear-gradient(135deg,#ff83bc,#ffda89);color:#2c214c;border:2px solid #fff7;border-radius:999px;box-shadow:0 8px 28px #160c3870;min-width:58px;min-height:58px;font-size:25px;cursor:pointer;display:flex;align-items:center;justify-content:center}.music-toggle.show{display:flex}.music-toggle:focus-visible{outline:3px solid white;outline-offset:3px}
 </style>
 </head>
 <body>
@@ -37,7 +37,7 @@
 <div class="actions"><a class="btn btn-primary" id="rsvp" href="#" target="_blank" rel="noopener noreferrer">💬 Confirmar por WhatsApp</a><a class="btn btn-secondary" id="map" href="#" target="_blank" rel="noopener noreferrer">📍 Cómo llegar</a><a class="btn btn-secondary" id="calendar" href="#" target="_blank" rel="noopener noreferrer">📅 Agregar a Google Calendar</a></div><p class="footnote">¡Tu presencia es el mejor regalo! 💖</p></div></section>
 <footer>Hecho con 💜 para compartir momentos inolvidables</footer>
 </main>
-<button class="music-toggle" id="musicToggle" type="button" aria-label="Silenciar música" aria-pressed="true" title="Silenciar música">🔊</button>
+<button class="music-toggle" id="musicToggle" type="button" aria-label="Activar música" aria-pressed="false" title="Activar música">🎵</button>
 <script>
 /* ✏️ EDITÁ SOLO ESTA SECCIÓN PARA PERSONALIZAR LA INVITACIÓN.
    fechaInicio/fechaFin: formato ISO con zona horaria de Paraguay (-03:00).
@@ -85,7 +85,7 @@ function playNote(frequency,duration){
   const oscillator=audioContext.createOscillator(), gain=audioContext.createGain();
   oscillator.type='sine';oscillator.frequency.value=frequency;
   gain.gain.setValueAtTime(0.0001,now);
-  gain.gain.exponentialRampToValueAtTime(0.085,now+0.025);
+  gain.gain.exponentialRampToValueAtTime(0.25,now+0.025);
   gain.gain.exponentialRampToValueAtTime(0.0001,now+duration*.95);
   oscillator.connect(gain);gain.connect(audioContext.destination);
   oscillator.start(now);oscillator.stop(now+duration);
@@ -102,12 +102,17 @@ function updateMusicButton(){
   button.setAttribute('title',musicOn?'Silenciar música':'Activar música');
   button.setAttribute('aria-pressed',String(musicOn));
 }
-async function startMusic(){
+function startMusic(){
   try{
-    if(!audioContext)audioContext=new (window.AudioContext||window.webkitAudioContext)();
-    await audioContext.resume();
     if(musicOn)return;
-    musicOn=true;noteIndex=0;nextNote();updateMusicButton();
+    const AudioCtx=window.AudioContext||window.webkitAudioContext;
+    if(!AudioCtx)throw new Error('Audio no compatible');
+    if(!audioContext)audioContext=new AudioCtx();
+    musicOn=true;noteIndex=0;updateMusicButton();
+    // Arrancar dentro del gesto del usuario, antes de cualquier await (Safari iOS).
+    const resumePromise=audioContext.resume();
+    nextNote();
+    if(resumePromise&&resumePromise.catch)resumePromise.catch(()=>{stopMusic();});
   }catch(error){musicOn=false;updateMusicButton();}
 }
 function stopMusic(){
@@ -117,6 +122,7 @@ function stopMusic(){
 }
 $('musicToggle').addEventListener('click',()=>{if(musicOn)stopMusic();else startMusic()});
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&musicOn)stopMusic()});
+updateMusicButton();
 
 $('envelope').addEventListener('click',()=>{startMusic();if($('envelope').classList.contains('open')){$('details').scrollIntoView({behavior:reduceMotion?'instant':'smooth'});return}$('envelope').classList.add('open');$('envelope').setAttribute('aria-expanded','true');$('hint').textContent='✨ ¡Tu invitación está lista!';setTimeout(()=>{$('details').classList.add('visible');confetti();setTimeout(()=>$('details').scrollIntoView({behavior:reduceMotion?'instant':'smooth',block:'start'}),150)},650)});
 </script>
