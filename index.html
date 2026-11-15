@@ -37,7 +37,7 @@
 <div class="actions"><a class="btn btn-primary" id="rsvp" href="#" target="_blank" rel="noopener noreferrer">💬 Confirmar por WhatsApp</a><a class="btn btn-secondary" id="map" href="#" target="_blank" rel="noopener noreferrer">📍 Cómo llegar</a><a class="btn btn-secondary" id="calendar" href="#" target="_blank" rel="noopener noreferrer">📅 Agregar a Google Calendar</a></div><p class="footnote">¡Tu presencia es el mejor regalo! 💖</p></div></section>
 <footer>Hecho con 💜 para compartir momentos inolvidables</footer>
 </main>
-<button class="music-toggle" id="musicToggle" type="button" aria-label="Activar música" aria-pressed="false" title="Activar música">🎵</button>
+<button class="music-toggle" id="musicToggle" type="button" aria-label="Activar música" aria-pressed="false" title="Activar música">🔇</button>
 <script>
 /* ✏️ EDITÁ SOLO ESTA SECCIÓN PARA PERSONALIZAR LA INVITACIÓN.
    fechaInicio/fechaFin: formato ISO con zona horaria de Paraguay (-03:00).
@@ -71,54 +71,32 @@ const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches
 if(!reduceMotion){for(let i=0;i<34;i++){const s=document.createElement('i');s.className='star';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.animationDelay=Math.random()*3+'s';$('stars').append(s)}}
 function confetti(){if(reduceMotion)return;const colors=['#ff91c7','#ffe19a','#bba2ff','#8ee8dd','#fff'];for(let i=0;i<75;i++){const p=document.createElement('i');p.className='piece';p.style.setProperty('--left',Math.random()*100+'%');p.style.setProperty('--color',colors[i%colors.length]);p.style.setProperty('--duration',2.5+Math.random()*2+'s');p.style.setProperty('--drift',(Math.random()-.5)*180+'px');p.style.setProperty('--rotate',Math.random()*360+'deg');p.style.animationDelay=Math.random()*.8+'s';$('confetti').append(p);setTimeout(()=>p.remove(),5500)}}
 
-/* Melodía original festiva sintetizada localmente con Web Audio, sin MP3 externo. */
-let audioContext=null, musicTimer=null, musicOn=false, noteIndex=0;
-const notes=[
-  [523.25,.23],[659.25,.23],[783.99,.3],[659.25,.2],[698.46,.25],[880,.36],
-  [783.99,.24],[659.25,.24],[587.33,.3],[523.25,.24],[659.25,.25],[783.99,.4],
-  [880,.22],[987.77,.22],[1046.5,.4],[783.99,.22],[880,.22],[659.25,.42],
-  [698.46,.23],[783.99,.23],[659.25,.28],[587.33,.2],[523.25,.55]
-];
-function playNote(frequency,duration){
-  if(!audioContext||!musicOn)return;
-  const now=audioContext.currentTime;
-  const oscillator=audioContext.createOscillator(), gain=audioContext.createGain();
-  oscillator.type='sine';oscillator.frequency.value=frequency;
-  gain.gain.setValueAtTime(0.0001,now);
-  gain.gain.exponentialRampToValueAtTime(0.25,now+0.025);
-  gain.gain.exponentialRampToValueAtTime(0.0001,now+duration*.95);
-  oscillator.connect(gain);gain.connect(audioContext.destination);
-  oscillator.start(now);oscillator.stop(now+duration);
-}
-function nextNote(){
-  if(!musicOn)return;
-  const [frequency,duration]=notes[noteIndex];noteIndex=(noteIndex+1)%notes.length;
-  playNote(frequency,duration);musicTimer=setTimeout(nextNote,duration*1000+45);
-}
+/* Música MP3 alojada en el mismo repositorio, compatible con GitHub Pages. */
+const birthdayAudio = new Audio('./the_mountain-happy-birthday-508020.mp3');
+birthdayAudio.loop = true;
+birthdayAudio.preload = 'none';
+birthdayAudio.volume = 0.8;
+let musicOn = false;
 function updateMusicButton(){
-  const button=$('musicToggle');button.classList.add('show');
-  button.textContent=musicOn?'🔊':'🔇';
-  button.setAttribute('aria-label',musicOn?'Silenciar música':'Activar música');
-  button.setAttribute('title',musicOn?'Silenciar música':'Activar música');
-  button.setAttribute('aria-pressed',String(musicOn));
+ const button=$('musicToggle');
+ button.classList.add('show');
+ button.textContent=musicOn?'🔊':'🔇';
+ button.setAttribute('aria-label',musicOn?'Silenciar música':'Activar música');
+ button.setAttribute('aria-pressed',String(musicOn));
+ button.title=musicOn?'Silenciar música':'Activar música';
 }
 function startMusic(){
-  try{
-    if(musicOn)return;
-    const AudioCtx=window.AudioContext||window.webkitAudioContext;
-    if(!AudioCtx)throw new Error('Audio no compatible');
-    if(!audioContext)audioContext=new AudioCtx();
-    musicOn=true;noteIndex=0;updateMusicButton();
-    // Arrancar dentro del gesto del usuario, antes de cualquier await (Safari iOS).
-    const resumePromise=audioContext.resume();
-    nextNote();
-    if(resumePromise&&resumePromise.catch)resumePromise.catch(()=>{stopMusic();});
-  }catch(error){musicOn=false;updateMusicButton();}
+ birthdayAudio.muted=false;
+ const attempt=birthdayAudio.play();
+ if(attempt && typeof attempt.then==='function'){
+  attempt.then(()=>{musicOn=true;updateMusicButton()}).catch(()=>{
+   musicOn=false;updateMusicButton();
+  });
+ }else{musicOn=true;updateMusicButton();}
 }
 function stopMusic(){
-  musicOn=false;clearTimeout(musicTimer);
-  if(audioContext&&audioContext.state==='running')audioContext.suspend();
-  updateMusicButton();
+ birthdayAudio.pause();
+ musicOn=false;updateMusicButton();
 }
 $('musicToggle').addEventListener('click',()=>{if(musicOn)stopMusic();else startMusic()});
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&musicOn)stopMusic()});
